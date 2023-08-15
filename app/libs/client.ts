@@ -1,4 +1,4 @@
-import { createClient } from 'newt-client-js'
+import { GetContentsQuery, createClient } from 'newt-client-js'
 import { BlogArticle } from '../types/blog';
 
 export const client = createClient({
@@ -7,10 +7,11 @@ export const client = createClient({
   apiType: 'cdn' 
 });
 
-export const getBlogsData = async () => {
+export const getBlogsData = async (query?: GetContentsQuery) => {
   const data = await client.getContents<BlogArticle>({
     appUid: 'blog',
-    modelUid: 'article'
+    modelUid: 'article',
+    query: query
   })
   return data;
 };
