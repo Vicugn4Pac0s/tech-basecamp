@@ -15,3 +15,13 @@ export const getBlogsData = async (query?: GetContentsQuery) => {
   })
   return data;
 };
+
+export const getBlogData = async (contentId: string) => {
+  const data = await client.getContent<BlogArticle>({
+    appUid: 'blog',
+    modelUid: 'article',
+    contentId: contentId
+  })
+  return data;
+};
+
