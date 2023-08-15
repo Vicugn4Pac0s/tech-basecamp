@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect } from "react";
 import { initYouTubeAPI, onYoutubeReady } from "../libs/youtube";
 
 declare global {
@@ -13,16 +14,21 @@ type Props = {
 };
 
 export default function Youtube({ id }: Props) {
+  let player: YT.Player;
   initYouTubeAPI()
   onYoutubeReady(()=> {
-    const player: YT.Player = new YT.Player(`yt-${id}`, {
+    player = new YT.Player(`yt-video`, {
       videoId: id
     })
   })
 
+  useEffect(()=> {
+    player?.cueVideoById(id)
+  }, [id])
+
   return (
     <div>
-      <div id={`yt-${id}`}></div>
+      <div id={`yt-video`}></div>      
     </div>
   );
 }
