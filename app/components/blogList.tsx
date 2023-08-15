@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { client, getBlogsData } from "../libs/client"
+import { getBlogsData } from "../libs/client"
 import { BlogArticle } from "../types/blog";
 
 export default function Blogs() {
