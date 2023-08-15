@@ -1,7 +1,9 @@
-export default async function Blog() {
+import BlogList from "../components/blogList";
+
+export default function Blogs() {
   return (
     <main>
-      blog
+      <BlogList></BlogList>
     </main>
   )
 }
