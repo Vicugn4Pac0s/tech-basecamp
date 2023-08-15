@@ -17,13 +17,15 @@ export default function Youtube({ id }: Props) {
   const [player, setPlayer] = useState<YT.Player | null>(null);
   const [ytId, setYtId] = useState(id);
 
-  initYouTubeAPI();
-  onYoutubeReady(() => {
-    const newPlayer = new YT.Player(`yt-video`, {
-      videoId: id,
+  useEffect(()=> {
+    initYouTubeAPI();
+    onYoutubeReady(() => {
+      const newPlayer = new YT.Player(`yt-video`, {
+        videoId: id,
+      });
+      setPlayer(newPlayer);
     });
-    setPlayer(newPlayer);
-  });
+  }, [id])
 
   useEffect(() => {
     if (player && player.cueVideoById) {
