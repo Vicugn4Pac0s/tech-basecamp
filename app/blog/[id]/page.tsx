@@ -1,3 +1,4 @@
+import Youtube from "@/app/components/youtube";
 import { getBlogData } from "../../libs/client";
 
 interface PageProps {
@@ -13,6 +14,8 @@ export default async function Blog({params, searchParams}: PageProps) {
     <main>
       blog
       {article.title}
+
+      <Youtube id='Xw9hHVFBZUI'></Youtube>
     </main>
   )
 }
