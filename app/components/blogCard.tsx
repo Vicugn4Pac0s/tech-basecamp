@@ -16,7 +16,7 @@ export default function BlogCard({ item }: Props) {
   }
 
   return (
-    <div key={item._id}>
+    <div key={item._id} className="w-full">
       <a href={url} target={target}>
         <h1>{item.title}</h1>
       </a>

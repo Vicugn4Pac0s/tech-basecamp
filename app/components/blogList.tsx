@@ -22,9 +22,14 @@ export default function BlogList() {
   return (
     <div>
       <input type="number" name="limit" min={1} max={20} onChange={(e)=> {setLimt(Number(e.target.value))}} />
-      {articles.map(item => (
-        <BlogCard item={item}></BlogCard>
-      ))}
+
+      <div className="flex flex-wrap gap-5">
+        {articles.map(item => (
+          <div className="w-[320px]">
+            <BlogCard item={item}></BlogCard>
+          </div>
+        ))}
+      </div>
     </div>
   )
 }
