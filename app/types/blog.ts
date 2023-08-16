@@ -32,9 +32,11 @@ export type BlogArticle = {
   _sys: BlogSys;
   title: string;
   slug: string;
+  tags: string[];
   meta: BlogMeta;
+  articleUrl: string;
+  youtubeId: string;
   body: string;
   coverImage: BlogImage;
   author: string;
-  tags: string[];
 };

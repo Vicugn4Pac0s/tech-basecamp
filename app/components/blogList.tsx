@@ -3,10 +3,11 @@
 import { useEffect, useState } from "react";
 import { getBlogsData } from "../libs/client"
 import { BlogArticle } from "../types/blog";
+import BlogCard from "./blogCard";
 
-export default function Blogs() {
+export default function BlogList() {
   const [articles, setArticles] = useState<BlogArticle[]>([])
-  const [limit, setLimt] = useState(3)
+  const [limit, setLimt] = useState(5)
 
   useEffect(() => {
     async function fetchData() {
@@ -22,11 +23,7 @@ export default function Blogs() {
     <div>
       <input type="number" name="limit" min={1} max={20} onChange={(e)=> {setLimt(Number(e.target.value))}} />
       {articles.map(item => (
-        <div key={item._id}>
-          <a href={`/blog/${item._id}`}>
-            <h1>{item.title}</h1>
-          </a>
-        </div>
+        <BlogCard item={item}></BlogCard>
       ))}
     </div>
   )
