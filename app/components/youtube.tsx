@@ -3,12 +3,6 @@
 import { useEffect, useState } from "react";
 import { initYouTubeAPI, onYoutubeReady } from "../libs/youtube";
 
-declare global {
-  interface Window {
-    onYouTubeIframeAPIReady: () => void;
-  }
-}
-
 type Props = {
   id: string;
 };
