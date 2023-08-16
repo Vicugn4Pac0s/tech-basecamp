@@ -1,3 +1,4 @@
+import Image from "next/image";
 import { BlogArticle } from "../types/blog";
 
 type Props = {
@@ -15,9 +16,19 @@ export default function BlogCard({ item }: Props) {
     target = "_blank";
   }
 
+  let imgPath = "/vercel.svg";
+  if (item.coverImage) {
+    imgPath = item.coverImage.src;
+  }
+
   return (
     <article key={item._id} className="h-full w-full">
-      <a href={url} target={target} className="block h-full p-4 hover:bg-[#eee]">
+      <a
+        href={url}
+        target={target}
+        className="block h-full p-4 hover:bg-[#eee]"
+      >
+        <Image src={imgPath} height={512} width={1280} alt=""></Image>
         <h1 className="mb-4">{item.title}</h1>
         <div>
           {item.tags.map((tag) => (
