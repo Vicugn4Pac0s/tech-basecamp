@@ -16,10 +16,15 @@ export default function BlogCard({ item }: Props) {
   }
 
   return (
-    <div key={item._id} className="w-full">
-      <a href={url} target={target}>
-        <h1>{item.title}</h1>
+    <article key={item._id} className="h-full w-full">
+      <a href={url} target={target} className="block h-full p-4 hover:bg-[#eee]">
+        <h1 className="mb-4">{item.title}</h1>
+        <div>
+          {item.tags.map((tag) => (
+            <div className="inline-block mr-2 p-1">{tag.name}</div>
+          ))}
+        </div>
       </a>
-    </div>
+    </article>
   );
 }

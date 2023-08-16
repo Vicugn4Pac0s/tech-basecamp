@@ -27,12 +27,18 @@ export type BlogMeta = {
   ogImage: BlogImage;
 };
 
+export type BlogTag = {
+  name: string,
+  slug: string,
+  _id: string
+}
+
 export type BlogArticle = {
   _id: string;
   _sys: BlogSys;
   title: string;
   slug: string;
-  tags: string[];
+  tags: BlogTag[];
   meta: BlogMeta;
   articleUrl: string;
   youtubeId: string;
