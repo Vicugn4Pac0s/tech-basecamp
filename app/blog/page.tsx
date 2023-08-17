@@ -1,9 +1,9 @@
-import BlogList from "../components/blogList";
+import BlogIndex from "../components/blogIndex";
 
 export default function Blogs() {
   return (
     <main>
-      <BlogList></BlogList>
+      <BlogIndex></BlogIndex>
     </main>
   )
 }
