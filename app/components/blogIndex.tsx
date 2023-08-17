@@ -12,23 +12,29 @@ export default function BlogIndex() {
   const [currentTagId, setCurrentTagId] = useState("");
 
   useEffect(() => {
-    async function fetchData() {
+    async function fetchTagData() {
+      const tags = await getBlogTag();
+      setTags(tags.items);
+    }
+    fetchTagData();
+  }, []);
+
+  useEffect(() => {
+    async function fetchBlogData() {
       let query = [{}];
       if (currentTagId !== "") {
         query = [
           {
             tags: currentTagId,
-          }
+          },
         ];
       }
       const blogs = await getBlogsData({
         and: [...query],
       });
       setArticles(blogs.items);
-      const tags = await getBlogTag();
-      setTags(tags.items);
     }
-    fetchData();
+    fetchBlogData();
   }, [currentTagId]);
 
   return (
