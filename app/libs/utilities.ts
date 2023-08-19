@@ -22,7 +22,7 @@ export const extractDomain = (url: string): string | null => {
  * @param url - YouTubeのURL
  * @returns videoId、もしくはURLが不正な場合はnull
  */
-export const extractYouTubeVideoId = (url: string): string | null => {
+export const extractYouTubeVideoId = (url: string): string => {
   // YouTubeのURLの正規表現パターン
   const regExp = /^.*(youtu.be\/|v\/|e\/|u\/\w+\/|embed\/|v=)([^#\&\?]*).*/;
   const match = url.match(regExp);
@@ -30,6 +30,6 @@ export const extractYouTubeVideoId = (url: string): string | null => {
   if (match && match[2].length === 11) {
     return match[2];
   } else {
-    return null;
+    return '';
   }
 }

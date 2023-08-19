@@ -4,7 +4,7 @@ import { extractDomain, extractYouTubeVideoId } from "../libs/utilities";
 
 type Props = {
   item: MediaArticle;
-  fadeInYoutube?: () => void;
+  fadeInYoutube?: (youtubeId: string) => void;
 };
 
 export default function ArticleCard({ item, fadeInYoutube }: Props) {
@@ -18,8 +18,7 @@ export default function ArticleCard({ item, fadeInYoutube }: Props) {
     if (articleDomain === "youtube.com") {
       if (!fadeInYoutube) return;
       event.preventDefault();
-      fadeInYoutube();
-      alert(extractYouTubeVideoId(articleUrl))
+      fadeInYoutube(extractYouTubeVideoId(articleUrl));
     }
   };
 

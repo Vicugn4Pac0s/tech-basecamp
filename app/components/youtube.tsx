@@ -5,11 +5,11 @@ import { initYouTubeAPI, onYoutubeReady } from "../libs/youtube";
 
 type Props = {
   id: string;
+  fadeOutYoutube: (player: YT.Player | null) => void
 };
 
-export default function Youtube({ id }: Props) {
+export default function Youtube({ id, fadeOutYoutube }: Props) {
   const [player, setPlayer] = useState<YT.Player | null>(null);
-  const [ytId, setYtId] = useState(id);
 
   useEffect(()=> {
     initYouTubeAPI();
@@ -23,27 +23,17 @@ export default function Youtube({ id }: Props) {
 
   useEffect(() => {
     if (player && player.cueVideoById) {
-      player.cueVideoById(ytId);
+      player.cueVideoById(id);
     }
-  }, [ytId, player]);
+  }, [id, player]);
+
+  const fadeOut = () => {
+    fadeOutYoutube(player)
+  }
 
   return (
-    <div>
+    <div className="flex justify-center items-center h-full w-full" onClick={fadeOut}>
       <div id={`yt-video`}></div>
-      <div
-        onClick={() => {
-          setYtId("Xw9hHVFBZUI");
-        }}
-      >
-        Xw9hHVFBZUI
-      </div>
-      <div
-        onClick={() => {
-          setYtId("r6MoN5FWpoI");
-        }}
-      >
-        r6MoN5FWpoI
-      </div>
     </div>
   );
 }
