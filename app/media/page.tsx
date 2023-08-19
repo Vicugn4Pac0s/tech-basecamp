@@ -1,3 +1,4 @@
+import ContentsWrap from "../components/contentsWrap";
 import Inner from "../components/inner";
 import MediaIndex from "../components/mediaIndex";
 import Mv from "../components/mv";
@@ -9,9 +10,11 @@ export default function Media() {
         title="メディア一覧"
         description="テキストが入ります。テキストが入ります。テキストが入ります。"
       ></Mv>
-      <Inner>
-        <MediaIndex></MediaIndex>
-      </Inner>
+      <ContentsWrap>
+        <Inner>
+          <MediaIndex></MediaIndex>
+        </Inner>
+      </ContentsWrap>
     </main>
   );
 }

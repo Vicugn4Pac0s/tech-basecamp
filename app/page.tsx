@@ -5,6 +5,7 @@ import BtnA from "./components/btnA";
 import { getMediasData } from "./libs/client";
 import Mv from "./components/mv";
 import Inner from "./components/inner";
+import ContentsWrap from "./components/contentsWrap";
 
 export default async function Home() {
   const articles = await getMediasData({
@@ -16,13 +17,15 @@ export default async function Home() {
         title="TECH BASECAMP"
         description="テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。"
       ></Mv>
-      <Inner>
-        <HeadingA>メディア一覧</HeadingA>
-        <MediaList articles={articles.items} limit={8}></MediaList>
-        <div className="text-center mt-4">
-          <BtnA href="/media">もっとみる</BtnA>
-        </div>
-      </Inner>
+      <ContentsWrap>
+        <Inner>
+          <HeadingA>メディア一覧</HeadingA>
+          <MediaList articles={articles.items} limit={8}></MediaList>
+          <div className="text-center mt-4">
+            <BtnA href="/media">もっとみる</BtnA>
+          </div>
+        </Inner>
+      </ContentsWrap>
     </main>
   );
 }
