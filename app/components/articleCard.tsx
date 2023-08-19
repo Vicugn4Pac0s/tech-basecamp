@@ -16,17 +16,17 @@ export default function ArticleCard({ item }: Props) {
       <a
         href={item.articleUrl}
         target="_blank"
-        className="block h-full p-3 hover:bg-[#eee]"
+        className="block h-full p-3 hover:bg-[#f9f9f9]"
       >
         <div className="mb-2">
           <Image src={imgPath} height={512} width={1280} alt="" className="h-[100px] object-cover"></Image>
         </div>
-        <h1 className="mb-4">{item.title}</h1>
-        <div>
+        <div className="mb-1">
           {item.tags.map((tag) => (
-            <div className="inline-block mr-2 p-1">{tag.name}</div>
+            <div className="text-[#999] inline mr-1 text-xs">{tag.name}</div>
           ))}
         </div>
+        <h1 className="text-sm">{item.title}</h1>
       </a>
     </article>
   );
