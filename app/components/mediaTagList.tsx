@@ -1,7 +1,7 @@
 "use client";
 
 import { Dispatch, SetStateAction } from "react";
-import { MediaTag } from "../types/blog";
+import { MediaTag } from "../types/MediaArticle";
 import TagBtn from "./tagBtn";
 
 type props = {
@@ -9,7 +9,7 @@ type props = {
   setCurrentTagId: Dispatch<SetStateAction<string>>
 }
 
-export default function BlogTagList({tags, setCurrentTagId}: props) {
+export default function MediaTagList({tags, setCurrentTagId}: props) {
 
   const setTag = (tagId: string) => () => {
     setCurrentTagId(tagId)

@@ -1,5 +1,5 @@
 import Youtube from "@/app/components/youtube";
-import { getBlogData } from "../../libs/client";
+import { getMediaData } from "../../libs/client";
 import TestGsap from "@/app/components/testGsap";
 
 interface PageProps {
@@ -9,11 +9,11 @@ interface PageProps {
   searchParams?: { [key: string]: string | string[] | undefined };
 }
 
-export default async function Blog({params, searchParams}: PageProps) {
-  const article = await getBlogData(params.id);
+export default async function Media({params, searchParams}: PageProps) {
+  const article = await getMediaData(params.id);
   return (
     <main>
-      blog
+      Media
       {article.title}
 
       <Youtube id='Xw9hHVFBZUI'></Youtube>

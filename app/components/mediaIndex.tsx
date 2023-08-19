@@ -1,26 +1,26 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { getBlogTag, getBlogsData } from "../libs/client";
-import { MediaArticle, MediaTag } from "../types/blog";
-import BlogList from "./blogList";
-import BlogTagList from "./blogTagList";
+import { getMediaTag, getMediasData } from "../libs/client";
+import { MediaArticle, MediaTag } from "../types/MediaArticle";
+import MediaList from "./mediaList";
+import MediaTagList from "./mediaTagList";
 
-export default function BlogIndex() {
+export default function MediaIndex() {
   const [articles, setArticles] = useState<MediaArticle[]>([]);
   const [tags, setTags] = useState<MediaTag[]>([]);
   const [currentTagId, setCurrentTagId] = useState("");
 
   useEffect(() => {
     async function fetchTagData() {
-      const tags = await getBlogTag();
+      const tags = await getMediaTag();
       setTags(tags.items);
     }
     fetchTagData();
   }, []);
 
   useEffect(() => {
-    async function fetchBlogData() {
+    async function fetchMediaData() {
       let query = [{}];
       if (currentTagId !== "") {
         query = [
@@ -29,18 +29,18 @@ export default function BlogIndex() {
           },
         ];
       }
-      const blogs = await getBlogsData({
+      const medias = await getMediasData({
         and: [...query],
       });
-      setArticles(blogs.items);
+      setArticles(medias.items);
     }
-    fetchBlogData();
+    fetchMediaData();
   }, [currentTagId]);
 
   return (
     <div>
-      <BlogTagList tags={tags} setCurrentTagId={setCurrentTagId}></BlogTagList>
-      <BlogList articles={articles}></BlogList>
+      <MediaTagList tags={tags} setCurrentTagId={setCurrentTagId}></MediaTagList>
+      <MediaList articles={articles}></MediaList>
     </div>
   );
 }

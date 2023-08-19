@@ -1,5 +1,5 @@
 import Image from "next/image";
-import { MediaArticle } from "../types/blog";
+import { MediaArticle } from "../types/MediaArticle";
 
 type Props = {
   item: MediaArticle;
