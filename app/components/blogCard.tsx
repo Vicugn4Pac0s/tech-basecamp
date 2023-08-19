@@ -7,7 +7,7 @@ type Props = {
 
 export default function BlogCard({ item }: Props) {
 
-  let imgPath = "/vercel.svg";
+  let imgPath = "/logo.svg";
   if (item.coverImage) {
     imgPath = item.coverImage.src;
   }
