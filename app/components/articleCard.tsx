@@ -4,24 +4,29 @@ import { extractDomain } from "../libs/utilities";
 
 type Props = {
   item: MediaArticle;
+  fadeInYoutube?: () => void;
 };
 
-export default function ArticleCard({ item }: Props) {
+export default function ArticleCard({ item, fadeInYoutube }: Props) {
   let imgPath = "/logo.svg";
   if (item.coverImage) {
     imgPath = item.coverImage.src;
   }
 
   const clickLink = (articleUrl: string) => (event: React.MouseEvent) => {
-    const articleDomain = extractDomain(articleUrl)
-    if(articleDomain === 'youtube.com') {
+    const articleDomain = extractDomain(articleUrl);
+    if (articleDomain === "youtube.com") {
+      if (!fadeInYoutube) return;
       event.preventDefault();
-      alert(articleDomain)
+      fadeInYoutube();
     }
-  }
-  
+  };
+
   return (
-    <article key={item._id} className="h-full w-full relative rounded overflow-hidden">
+    <article
+      key={item._id}
+      className="h-full w-full relative rounded overflow-hidden"
+    >
       <a
         href={item.articleUrl}
         target="_blank"
@@ -29,7 +34,13 @@ export default function ArticleCard({ item }: Props) {
         onClick={clickLink(item.articleUrl)}
       >
         <div className="mb-2">
-          <Image src={imgPath} height={512} width={1280} alt="" className="h-[100px] object-cover"></Image>
+          <Image
+            src={imgPath}
+            height={512}
+            width={1280}
+            alt=""
+            className="h-[100px] object-cover"
+          ></Image>
         </div>
         <div className="mb-1">
           {item.tags.map((tag) => (
