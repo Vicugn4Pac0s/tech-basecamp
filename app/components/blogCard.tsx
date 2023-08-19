@@ -6,7 +6,6 @@ type Props = {
 };
 
 export default function BlogCard({ item }: Props) {
-
   let imgPath = "/logo.svg";
   if (item.coverImage) {
     imgPath = item.coverImage.src;
@@ -16,10 +15,12 @@ export default function BlogCard({ item }: Props) {
     <article key={item._id} className="h-full w-full relative">
       <a
         href={item.articleUrl}
-        target='_blank'
-        className="block h-full p-4 hover:bg-[#eee]"
+        target="_blank"
+        className="block h-full p-3 hover:bg-[#eee]"
       >
-        <Image src={imgPath} height={512} width={1280} alt=""></Image>
+        <div className="mb-2">
+          <Image src={imgPath} height={512} width={1280} alt="" className="h-[100px] object-cover"></Image>
+        </div>
         <h1 className="mb-4">{item.title}</h1>
         <div>
           {item.tags.map((tag) => (
