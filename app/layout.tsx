@@ -2,8 +2,6 @@ import "./globals.css";
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import Header from "./components/header";
-import Inner from "./components/inner";
-import Mv from "./components/mv";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -21,10 +19,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className={inter.className}>
         <Header></Header>
-        <Mv title="TECH BASECAMP" description="テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。"></Mv>
-        <Inner>
-          <div className="my-10">{children}</div>
-        </Inner>
+        {children}
       </body>
     </html>
   );
