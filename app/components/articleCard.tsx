@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { MediaArticle } from "../types/MediaArticle";
+import { extractDomain } from "../libs/utilities";
 
 type Props = {
   item: MediaArticle;
