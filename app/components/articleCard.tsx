@@ -12,7 +12,7 @@ export default function ArticleCard({ item }: Props) {
   }
 
   return (
-    <article key={item._id} className="h-full w-full relative">
+    <article key={item._id} className="h-full w-full relative rounded overflow-hidden">
       <a
         href={item.articleUrl}
         target="_blank"
