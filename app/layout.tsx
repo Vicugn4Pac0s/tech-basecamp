@@ -21,7 +21,7 @@ export default function RootLayout({
     <html lang="ja">
       <body className={inter.className}>
         <Header></Header>
-        <Mv></Mv>
+        <Mv title="TECH BASECAMP" description="テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。テキストが入ります。"></Mv>
         <Inner>
           <div className="my-10">{children}</div>
         </Inner>
