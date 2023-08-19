@@ -6,15 +6,6 @@ type Props = {
 };
 
 export default function BlogCard({ item }: Props) {
-  let url = `/blog/${item._id}`;
-  let isExternal = false;
-  if (item.articleUrl !== "") {
-    url = item.articleUrl;
-    isExternal = true;
-  } else if (item.youtubeId !== "") {
-    url = `https://www.youtube.com/watch?v=${item.youtubeId}`;
-    isExternal = true;
-  }
 
   let imgPath = "/vercel.svg";
   if (item.coverImage) {
@@ -24,8 +15,8 @@ export default function BlogCard({ item }: Props) {
   return (
     <article key={item._id} className="h-full w-full relative">
       <a
-        href={url}
-        target={isExternal ? '_blank': '' }
+        href={item.articleUrl}
+        target='_blank'
         className="block h-full p-4 hover:bg-[#eee]"
       >
         <Image src={imgPath} height={512} width={1280} alt=""></Image>
@@ -35,8 +26,6 @@ export default function BlogCard({ item }: Props) {
             <div className="inline-block mr-2 p-1">{tag.name}</div>
           ))}
         </div>
-
-        <div className="text-blue-400 absolute bottom-2 right-2">{isExternal ? '外部リンク': ''}</div>
       </a>
     </article>
   );

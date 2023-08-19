@@ -21,12 +21,6 @@ export type BlogSys = {
   raw: BlogSysRaw;
 };
 
-export type BlogMeta = {
-  title: string;
-  description: string;
-  ogImage: BlogImage;
-};
-
 export type BlogTag = {
   name: string,
   slug: string,
@@ -39,9 +33,7 @@ export type BlogArticle = {
   title: string;
   slug: string;
   tags: BlogTag[];
-  meta: BlogMeta;
   articleUrl: string;
-  youtubeId: string;
   body: string;
   coverImage: BlogImage;
   author: string;
