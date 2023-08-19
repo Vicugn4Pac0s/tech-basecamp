@@ -16,7 +16,7 @@ export default function MediaTagList({tags, setCurrentTagId}: props) {
   }
   
   return (
-    <div className="flex flex-wrap gap-2 mb-8">
+    <div className="flex flex-wrap gap-2 mb-4">
       <div key="all" onClick={ setTag('') }>
         <TagBtn name='全て'></TagBtn>
       </div>
