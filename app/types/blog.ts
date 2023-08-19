@@ -1,4 +1,4 @@
-export type BlogImage = {
+export type MediaImage = {
   _id: string;
   src: string;
   fileType: string;
@@ -8,33 +8,33 @@ export type BlogImage = {
   height: number;
 };
 
-export type BlogSysRaw = {
+export type MediaSysRaw = {
   createdAt: string;
   updatedAt: string;
   firstPublishedAt: string;
   publishedAt: string;
 };
 
-export type BlogSys = {
+export type MediaSys = {
   createdAt: string;
   updatedAt: string;
-  raw: BlogSysRaw;
+  raw: MediaSysRaw;
 };
 
-export type BlogTag = {
+export type MediaTag = {
   name: string,
   slug: string,
   _id: string
 }
 
-export type BlogArticle = {
+export type MediaArticle = {
   _id: string;
-  _sys: BlogSys;
+  _sys: MediaSys;
   title: string;
   slug: string;
-  tags: BlogTag[];
+  tags: MediaTag[];
   articleUrl: string;
   body: string;
-  coverImage: BlogImage;
+  coverImage: MediaImage;
   author: string;
 };

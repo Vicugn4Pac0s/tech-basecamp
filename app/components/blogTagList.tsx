@@ -1,11 +1,11 @@
 "use client";
 
 import { Dispatch, SetStateAction } from "react";
-import { BlogTag } from "../types/blog";
+import { MediaTag } from "../types/blog";
 import TagBtn from "./tagBtn";
 
 type props = {
-  tags: BlogTag[]
+  tags: MediaTag[]
   setCurrentTagId: Dispatch<SetStateAction<string>>
 }
 

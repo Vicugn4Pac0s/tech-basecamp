@@ -2,13 +2,13 @@
 
 import { useEffect, useState } from "react";
 import { getBlogTag, getBlogsData } from "../libs/client";
-import { BlogArticle, BlogTag } from "../types/blog";
+import { MediaArticle, MediaTag } from "../types/blog";
 import BlogList from "./blogList";
 import BlogTagList from "./blogTagList";
 
 export default function BlogIndex() {
-  const [articles, setArticles] = useState<BlogArticle[]>([]);
-  const [tags, setTags] = useState<BlogTag[]>([]);
+  const [articles, setArticles] = useState<MediaArticle[]>([]);
+  const [tags, setTags] = useState<MediaTag[]>([]);
   const [currentTagId, setCurrentTagId] = useState("");
 
   useEffect(() => {

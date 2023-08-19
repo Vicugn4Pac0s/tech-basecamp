@@ -1,10 +1,10 @@
 "use client";
 
-import { BlogArticle } from "../types/blog";
-import BlogCard from "./blogCard";
+import { MediaArticle } from "../types/blog";
+import ArticleCard from "./articleCard";
 
 type props = {
-  articles: BlogArticle[]
+  articles: MediaArticle[]
 }
 
 export default function BlogList({articles}: props) {
@@ -12,7 +12,7 @@ export default function BlogList({articles}: props) {
     <div className="flex flex-wrap">
       {articles.map(item => (
         <div className="w-[250px]">
-          <BlogCard item={item}></BlogCard>
+          <ArticleCard item={item}></ArticleCard>
         </div>
       ))}
     </div>

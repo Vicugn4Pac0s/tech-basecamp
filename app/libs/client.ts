@@ -1,5 +1,5 @@
 import { GetContentsQuery, createClient } from 'newt-client-js'
-import { BlogArticle, BlogTag } from '../types/blog';
+import { MediaArticle, MediaTag } from '../types/blog';
 
 export const client = createClient({
   spaceUid: 'tech-basecamp',
@@ -8,7 +8,7 @@ export const client = createClient({
 });
 
 export const getBlogsData = async (query?: GetContentsQuery) => {
-  const data = await client.getContents<BlogArticle>({
+  const data = await client.getContents<MediaArticle>({
     appUid: 'blog',
     modelUid: 'article',
     query: query
@@ -17,7 +17,7 @@ export const getBlogsData = async (query?: GetContentsQuery) => {
 };
 
 export const getBlogData = async (contentId: string) => {
-  const data = await client.getContent<BlogArticle>({
+  const data = await client.getContent<MediaArticle>({
     appUid: 'blog',
     modelUid: 'article',
     contentId: contentId
@@ -26,7 +26,7 @@ export const getBlogData = async (contentId: string) => {
 };
 
 export const getBlogTag = async () => {
-  const data = await client.getContents<BlogTag>({
+  const data = await client.getContents<MediaTag>({
     appUid: 'blog',
     modelUid: 'tag'
   })

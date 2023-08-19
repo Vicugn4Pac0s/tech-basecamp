@@ -1,11 +1,11 @@
 import Image from "next/image";
-import { BlogArticle } from "../types/blog";
+import { MediaArticle } from "../types/blog";
 
 type Props = {
-  item: BlogArticle;
+  item: MediaArticle;
 };
 
-export default function BlogCard({ item }: Props) {
+export default function ArticleCard({ item }: Props) {
   let imgPath = "/logo.svg";
   if (item.coverImage) {
     imgPath = item.coverImage.src;
