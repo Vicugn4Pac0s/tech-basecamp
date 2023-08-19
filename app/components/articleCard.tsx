@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { MediaArticle } from "../types/MediaArticle";
-import { extractDomain } from "../libs/utilities";
+import { extractDomain, extractYouTubeVideoId } from "../libs/utilities";
 
 type Props = {
   item: MediaArticle;
@@ -19,6 +19,7 @@ export default function ArticleCard({ item, fadeInYoutube }: Props) {
       if (!fadeInYoutube) return;
       event.preventDefault();
       fadeInYoutube();
+      alert(extractYouTubeVideoId(articleUrl))
     }
   };
 
