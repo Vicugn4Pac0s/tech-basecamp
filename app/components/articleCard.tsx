@@ -25,7 +25,7 @@ export default function ArticleCard({ item, fadeInYoutube }: Props) {
 
   useEffect(() => {
     const fetchOgpData = async () => {
-      const response = await axios.get(`/api/get_ogp?url=${item.articleUrl}`);
+      const response = await axios.get(`/api/get-ogdata?url=${item.articleUrl}`);
       if (response.data && response.data['og:image']) {
         setImgPath(response.data['og:image']);
       }

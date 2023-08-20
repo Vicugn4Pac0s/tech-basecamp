@@ -6,7 +6,7 @@ interface OGPResponse {
     [key: string]: string;
 }
 
-export async function GET(req: NextRequest) {
+export const GET = async (req: NextRequest) => {
     try {
         const { searchParams } = new URL(req.url)
         const url = searchParams.get('url') as string;
