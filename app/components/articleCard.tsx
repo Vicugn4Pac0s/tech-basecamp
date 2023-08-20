@@ -21,21 +21,17 @@ export default function ArticleCard({ item, fadeInYoutube }: Props) {
     }
   };
 
-  const [ogData, setOgData] = useState<Record<string, string>>({});
   const [imgPath, setImgPath] = useState('/logo.svg')
 
   useEffect(() => {
     const fetchOgpData = async () => {
       const response = await axios.get(`/api/get_ogp?url=${item.articleUrl}`);
-      setOgData(response.data)
+      if (response.data && response.data['og:image']) {
+        setImgPath(response.data['og:image']);
+      }
     };
     fetchOgpData();
   }, []);
-  useEffect(() => {
-    if (ogData && ogData['og:image']) {
-      setImgPath(ogData['og:image']);
-    }
-  }, [ogData]);
 
   return (
     <article
