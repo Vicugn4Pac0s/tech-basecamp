@@ -21,7 +21,7 @@ export default function ArticleCard({ item, fadeInYoutube }: Props) {
     }
   };
 
-  const [imgPath, setImgPath] = useState('/logo.svg')
+  const [imgPath, setImgPath] = useState('/image_placeholder.png')
 
   useEffect(() => {
     const fetchOgpData = async () => {
