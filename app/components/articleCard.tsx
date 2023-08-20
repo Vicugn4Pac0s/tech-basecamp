@@ -1,6 +1,10 @@
+"use client";
+
 import Image from "next/image";
 import { MediaArticle } from "../types/MediaArticle";
 import { extractDomain, extractYouTubeVideoId } from "../libs/utilities";
+import { useEffect, useState } from "react";
+import axios from "axios";
 
 type Props = {
   item: MediaArticle;
@@ -13,6 +17,7 @@ export default function ArticleCard({ item, fadeInYoutube }: Props) {
     imgPath = item.coverImage.src;
   }
 
+
   const clickLink = (articleUrl: string) => (event: React.MouseEvent) => {
     const articleDomain = extractDomain(articleUrl);
     if (articleDomain === "youtube.com") {
@@ -21,6 +26,16 @@ export default function ArticleCard({ item, fadeInYoutube }: Props) {
       fadeInYoutube(extractYouTubeVideoId(articleUrl));
     }
   };
+
+  const [ogData, setOgData] = useState({});
+
+  useEffect(() => {
+    const fetchOgpData = async () => {
+      const response = await axios.get(`/api/get_ogp?url=${item.articleUrl}`);
+      setOgData(response.data)
+    };
+    fetchOgpData();
+  }, []);
 
   return (
     <article
