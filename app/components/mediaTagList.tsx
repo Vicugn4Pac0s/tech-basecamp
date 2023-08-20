@@ -1,30 +1,48 @@
 "use client";
 
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import { MediaTag } from "../types/MediaArticle";
-import TagBtn from "./tagBtn";
+import { FilterQuery } from "newt-client-js/dist/types/types";
 
 type props = {
-  tags: MediaTag[]
-  setCurrentTagId: Dispatch<SetStateAction<string>>
-}
+  tags: MediaTag[];
+  setTagsQuery: Dispatch<SetStateAction<FilterQuery[]>>;
+};
 
-export default function MediaTagList({tags, setCurrentTagId}: props) {
+export default function MediaTagList({ tags, setTagsQuery }: props) {
+  const [selectTagsId, setSelectTagsId] = useState<string[]>([]);
 
-  const setTag = (tagId: string) => () => {
-    setCurrentTagId(tagId)
-  }
-  
+  const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const { value, checked } = event.target;
+    if (checked && !selectTagsId.includes(value)) {
+      setSelectTagsId([...selectTagsId, value]);
+    } else if (!checked && selectTagsId.includes(value)) {
+      setSelectTagsId(selectTagsId.filter((item) => item !== value));
+    }
+  };
+
+  useEffect(() => {
+    const queryArray: FilterQuery[] = []
+    selectTagsId.forEach((id) => {
+      queryArray.push({
+        tags: id
+      })
+    });
+    setTagsQuery(queryArray)
+  }, [selectTagsId]);
+
   return (
     <div className="flex flex-wrap gap-2 mb-4">
-      <div key="all" onClick={ setTag('') }>
-        <TagBtn name='全て'></TagBtn>
-      </div>
-      {tags.map(item => (
-        <div key={item._id} onClick={ setTag(item._id) }>
-          <TagBtn name={item.name}></TagBtn>
+      {tags.map((item) => (
+        <div key={item._id}>
+          <input
+            type="checkbox"
+            value={item._id}
+            onChange={handleCheckboxChange}
+          />
+          {item.name}
         </div>
       ))}
     </div>
-  )
+  );
 }

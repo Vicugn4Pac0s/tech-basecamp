@@ -5,11 +5,12 @@ import { getMediaTag, getMediasData } from "../libs/client";
 import { MediaArticle, MediaTag } from "../types/MediaArticle";
 import MediaList from "./mediaList";
 import MediaTagList from "./mediaTagList";
+import { FilterQuery, GetContentsQuery } from "newt-client-js/dist/types/types";
 
 export default function MediaIndex() {
   const [articles, setArticles] = useState<MediaArticle[]>([]);
   const [tags, setTags] = useState<MediaTag[]>([]);
-  const [currentTagId, setCurrentTagId] = useState("");
+  const [tagsQuery, setTagsQuery] = useState<FilterQuery[]>([])
 
   useEffect(() => {
     async function fetchTagData() {
@@ -21,25 +22,19 @@ export default function MediaIndex() {
 
   useEffect(() => {
     async function fetchMediaData() {
-      let query = [{}];
-      if (currentTagId !== "") {
-        query = [
-          {
-            tags: currentTagId,
-          },
-        ];
+      const query: GetContentsQuery = {}
+      if(tagsQuery.length > 0) {
+        query.or = [...tagsQuery]
       }
-      const medias = await getMediasData({
-        and: [...query],
-      });
+      const medias = await getMediasData(query);
       setArticles(medias.items);
     }
     fetchMediaData();
-  }, [currentTagId]);
+  }, [tagsQuery]);
 
   return (
     <div>
-      <MediaTagList tags={tags} setCurrentTagId={setCurrentTagId}></MediaTagList>
+      <MediaTagList tags={tags} setTagsQuery={setTagsQuery}></MediaTagList>
       <MediaList articles={articles}></MediaList>
     </div>
   );
