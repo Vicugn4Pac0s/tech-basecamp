@@ -37,10 +37,12 @@ export default function MediaTagList({ tags, setTagsQuery }: props) {
         <div key={item._id}>
           <input
             type="checkbox"
+            id={item._id}
             value={item._id}
             onChange={handleCheckboxChange}
+            className="hidden"
           />
-          {item.name}
+          <label htmlFor={item._id} className={`px-3 py-1 rounded cursor-pointer ${selectTagsId.includes(item._id) ? 'bg-[#000] text-white' : 'bg-[#eee]'}`}>{item.name}</label>          
         </div>
       ))}
     </div>
