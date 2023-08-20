@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { MediaArticle } from "../types/MediaArticle";
 import { extractDomain, extractYouTubeVideoId } from "../libs/utilities";
 import { useEffect, useState } from "react";
@@ -12,11 +11,6 @@ type Props = {
 };
 
 export default function ArticleCard({ item, fadeInYoutube }: Props) {
-  let imgPath = "/logo.svg";
-  if (item.coverImage) {
-    imgPath = item.coverImage.src;
-  }
-
 
   const clickLink = (articleUrl: string) => (event: React.MouseEvent) => {
     const articleDomain = extractDomain(articleUrl);
@@ -27,7 +21,8 @@ export default function ArticleCard({ item, fadeInYoutube }: Props) {
     }
   };
 
-  const [ogData, setOgData] = useState({});
+  const [ogData, setOgData] = useState<Record<string, string>>({});
+  const [imgPath, setImgPath] = useState('/logo.svg')
 
   useEffect(() => {
     const fetchOgpData = async () => {
@@ -36,6 +31,11 @@ export default function ArticleCard({ item, fadeInYoutube }: Props) {
     };
     fetchOgpData();
   }, []);
+  useEffect(() => {
+    if (ogData && ogData['og:image']) {
+      setImgPath(ogData['og:image']);
+    }
+  }, [ogData]);
 
   return (
     <article
@@ -49,13 +49,13 @@ export default function ArticleCard({ item, fadeInYoutube }: Props) {
         onClick={clickLink(item.articleUrl)}
       >
         <div className="mb-2">
-          <Image
+          <img
             src={imgPath}
             height={512}
             width={1280}
             alt=""
             className="h-[100px] object-cover"
-          ></Image>
+          ></img>
         </div>
         <div className="mb-1">
           {item.tags.map((tag) => (
